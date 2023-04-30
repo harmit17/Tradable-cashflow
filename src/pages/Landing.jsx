@@ -3,11 +3,17 @@ import { useEffect, useState } from "react";
 import "../styles/Landing.scss";
 import { useNavigate } from "react-router-dom";
 // import { createClient } from "urql";
+import contractABI from "../artifacts/contract.json";
 import { request } from "graphql-request";
 import { myBlockies } from "../components/Blockies";
+import { ethers } from "ethers";
+import { useAccount } from "wagmi";
+const contractAddress = "0x168e732c446e82e517aa5054a237569e47ca8755";
 
 function Landing() {
   const navigate = useNavigate();
+  const { address } = useAccount();
+  const [receiverAdd, setReceiverAdd] = useState();
   const [showSwitch, setShowSwitch] = useState({
     contractStream: true,
     receiverStream: false,
@@ -17,6 +23,31 @@ function Landing() {
   const [inflowsContract, setInflowsContract] = useState([]);
   const [outflowsContract, setOutflowsContract] = useState([]);
   const [inflowsReceiver, setInflowsReceiver] = useState([]);
+
+  const getReceiverData = async () => {
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        // provider and signer
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+
+        const tfcontract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+
+        const data = await tfcontract.currentReceiver();
+        const receiverAdd = await tfcontract._receiver();
+        console.log(data);
+        console.log(receiverAdd);
+        setReceiverAdd(receiverAdd);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const loadIncomingContractStream = async () => {
     const tokensQuery_incoming = `
@@ -126,7 +157,10 @@ function Landing() {
     loadIncomingContractStream();
     loadOutgoingContractStream();
     loadIncomingReceiverStreams();
+    if (address) getReceiverData();
   }, []);
+
+  // update stream function
 
   return (
     <div className="landing-home">
@@ -135,7 +169,7 @@ function Landing() {
           <h1>Current Receiver Details</h1>
           <h3>Address</h3>
           <p>
-            210928310823091273-5781234750918{" "}
+            {receiverAdd ? receiverAdd : ""}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -151,7 +185,13 @@ function Landing() {
         <div className="button-grp">
           <button
             className="create-stream"
-            onClick={() => navigate("/create-update-stream")}
+            onClick={() => {
+              navigate("/create-update-stream", {
+                state: {
+                  data: "create",
+                },
+              });
+            }}
           >
             Create Stream
           </button>
@@ -262,8 +302,32 @@ function Landing() {
                           <td>
                             {item.currentFlowRate > 0 ? (
                               <>
-                                <button className="update">Update</button>
-                                <button className="delete">Delete</button>
+                                <button
+                                  className="update"
+                                  onClick={() => {
+                                    navigate("/create-update-stream", {
+                                      state: {
+                                        data: "update",
+                                        flowrate: item.currentFlowRate,
+                                      },
+                                    });
+                                  }}
+                                >
+                                  Update
+                                </button>
+                                <button
+                                  className="delete"
+                                  onClick={() => {
+                                    navigate("/create-update-stream", {
+                                      state: {
+                                        data: "delete",
+                                        flowrate: item.currentFlowRate,
+                                      },
+                                    });
+                                  }}
+                                >
+                                  Delete
+                                </button>
                               </>
                             ) : (
                               <>
