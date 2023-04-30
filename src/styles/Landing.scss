@@ -1,0 +1,186 @@
+.landing-home {
+  margin-top: 10vh;
+  .current-receiver-block {
+    min-height: 100px;
+    color: white;
+    // height: 100%;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+    background-color: #eae7ee;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ffffff;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    div.crd {
+      padding: 20px 0px;
+      background-color: #402380;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      margin-top: -40px;
+      text-align: center;
+
+      h1 {
+        letter-spacing: 1px;
+        color: #ffffff;
+        margin: 30px 0px;
+        font-family: "Caladea", serif;
+        font-weight: 700;
+      }
+      h3 {
+        margin: 10px 0px;
+      }
+      p {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        align-items: center;
+      }
+    }
+
+    .button-grp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      button.change-receiver {
+        background-color: #13142b;
+        padding: 10px 20px;
+        color: #ffffff;
+        border-radius: 5px;
+        margin: 10px 0px;
+        font-weight: 700;
+        border: 1px solid #13142b;
+      }
+      button.create-stream {
+        background-color: #13142b;
+        padding: 10px 20px;
+        color: #ffffff;
+        border-radius: 5px;
+        margin: 10px 0px;
+        font-weight: 700;
+        border: 1px solid #13142b;
+      }
+    }
+  }
+  .incoming-outgoing-btn-grps {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    gap: 1rem;
+    button {
+      padding: 10px 20px;
+      font-weight: 700;
+      border-radius: 5px;
+    }
+    button.in-out.active {
+      background-color: #5e82e3;
+      color: #ffffff;
+      border: 1px solid #5e82e3;
+    }
+    button.in-out {
+      background-color: transparent;
+      border: 1px solid #ffffff;
+    }
+  }
+  .streams {
+    margin: 50px 0px;
+    .buttons-group {
+      width: 80%;
+      margin: 0px auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      button {
+        padding: 10px 20px;
+        font-weight: 700;
+        border-radius: 5px;
+      }
+      button.nav-button.active {
+        background-color: #ffffff;
+        color: #13142b;
+        border: 1px solid #ffffff;
+      }
+      button.nav-button {
+        background-color: transparent;
+        border: 1px solid #ffffff;
+      }
+    }
+    .streams-table {
+      margin-top: 20px;
+      width: 80%;
+      margin: 20px auto;
+      min-height: 200px;
+      background-color: #ffffff;
+      table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        th,
+        td {
+          padding: 10px;
+        }
+        svg {
+          margin-left: 5px;
+        }
+        th:last-of-type() {
+          width: 20%;
+        }
+        th:nth-of-type(2),
+        td:nth-of-type(2) {
+          text-align: left;
+        }
+
+        thead {
+          padding: 10px;
+
+          th {
+            font-size: 0.75rem;
+            border-bottom: 1px solid #000;
+          }
+        }
+        tbody {
+          tr {
+            &:hover {
+              background-color: #73777b33;
+            }
+            // background-color: #73777b;
+            td {
+              font-size: 0.865rem;
+              border-bottom: 1px solid #73777b;
+            }
+            span.token-symbol {
+              color: #ec994b;
+              font-weight: 500;
+              font-size: 0.85rem;
+              margin-left: 5px;
+            }
+          }
+          tr:last-of-type {
+            td {
+              border-bottom: none;
+            }
+          }
+        }
+        button.update {
+          background-color: #402380;
+          border: 1px solid #402380;
+          padding: 5px 10px;
+          margin-right: 10px;
+          font-weight: 700;
+        }
+        button.delete {
+          background-color: #5e82e3;
+          color: #ffffff;
+          border: 1px solid #5e82e3;
+          padding: 5px 10px;
+          margin-right: 10px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
