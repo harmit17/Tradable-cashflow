@@ -48,7 +48,8 @@
       margin: 30px auto;
       display: flex;
       flex-direction: column;
-      input[type="text"] {
+      input[type="text"],
+      input[type="number"] {
         background-color: #ffffff;
         color: #13142b;
         width: 100%;

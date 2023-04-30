@@ -260,8 +260,21 @@ function Landing() {
                             ).toLocaleString()}
                           </td>
                           <td>
-                            <button className="update">Update</button>
-                            <button className="delete">Delete</button>
+                            {item.currentFlowRate > 0 ? (
+                              <>
+                                <button className="update">Update</button>
+                                <button className="delete">Delete</button>
+                              </>
+                            ) : (
+                              <>
+                                <button className="update" disabled>
+                                  Update
+                                </button>
+                                <button className="delete" disabled>
+                                  Delete
+                                </button>
+                              </>
+                            )}
                           </td>
                         </tr>
                       );
@@ -292,8 +305,21 @@ function Landing() {
                             ).toLocaleString()}
                           </td>
                           <td>
-                            <button className="update">Update</button>
-                            <button className="delete">Delete</button>
+                            {item.currentFlowRate > 0 ? (
+                              <>
+                                <button className="update">Update</button>
+                                <button className="delete">Delete</button>
+                              </>
+                            ) : (
+                              <>
+                                <button className="update" disabled>
+                                  Update
+                                </button>
+                                <button className="delete" disabled>
+                                  Delete
+                                </button>
+                              </>
+                            )}
                           </td>
                         </tr>
                       );
@@ -329,8 +355,21 @@ function Landing() {
                           ).toLocaleString()}
                         </td>
                         <td>
-                          <button className="update">Update</button>
-                          <button className="delete">Delete</button>
+                          {item.currentFlowRate > 0 ? (
+                            <>
+                              <button className="update">Update</button>
+                              <button className="delete">Delete</button>
+                            </>
+                          ) : (
+                            <>
+                              <button className="update" disabled>
+                                Update
+                              </button>
+                              <button className="delete" disabled>
+                                Delete
+                              </button>
+                            </>
+                          )}
                         </td>
                       </tr>
                     );

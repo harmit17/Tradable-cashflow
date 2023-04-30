@@ -10,7 +10,7 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { goerli } from "wagmi/chains";
+import { polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import Landing from "./pages/Landing";
@@ -22,7 +22,7 @@ function App() {
   // const [count, setCount] = useState(0);
 
   const { chains, provider } = configureChains(
-    [goerli],
+    [polygonMumbai],
     [alchemyProvider({ apiKey: import.meta.env.ALCHEMY_ID }), publicProvider()]
   );
   const { connectors } = getDefaultWallets({
